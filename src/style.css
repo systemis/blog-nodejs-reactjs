@@ -1,0 +1,110 @@
+body {
+  font-family: 'Lora', serif; }
+  body .row {
+    margin-right: 0;
+    margin-left: 0; }
+  body .col-md-4, body .col-sm-4 {
+    padding-right: 0;
+    padding-left: 0; }
+  body div.app {
+    padding: 0 5px 3px;
+    position: relative; }
+    @media screen and (min-width: 1200px) {
+      body div.app {
+        padding: 0 130px; } }
+  @media screen and (min-width: 1200px) and (max-width: 991px) {
+    body div.app {
+      padding: 0 70px; } }
+
+  body .dot {
+    border-radius: 50%;
+    margin: 0 10px;
+    font-size: 44px; }
+    body .dot.red {
+      color: red; }
+  body .post-item-home-page {
+    padding-top: 10px; }
+    body .post-item-home-page img {
+      width: 100%;
+      border-radius: 10px; }
+    body .post-item-home-page .show-post-title {
+      padding: 20px 0 0px 0; }
+      body .post-item-home-page .show-post-title h2 {
+        font-size: 25px;
+        margin-top: 0;
+        line-height: 35px;
+        letter-spacing: 1px; }
+        body .post-item-home-page .show-post-title h2 a {
+          color: black; }
+          body .post-item-home-page .show-post-title h2 a:hover {
+            text-decoration: none;
+            color: #24890d; }
+    body .post-item-home-page .show-post-blog-meta-category {
+      padding: 0 0 10px 0; }
+      body .post-item-home-page .show-post-blog-meta-category .show-image-icon-is-image {
+        padding-right: 20px; }
+        body .post-item-home-page .show-post-blog-meta-category .show-image-icon-is-image a {
+          color: #d2d2d2; }
+          body .post-item-home-page .show-post-blog-meta-category .show-image-icon-is-image a i {
+            font-size: 17px; }
+            body .post-item-home-page .show-post-blog-meta-category .show-image-icon-is-image a i:hover {
+              color: #f47e00; }
+      body .post-item-home-page .show-post-blog-meta-category .show-blog-categorys {
+        color: #d2d2d2;
+        padding-right: 15px; }
+        body .post-item-home-page .show-post-blog-meta-category .show-blog-categorys a {
+          color: #222;
+          border-bottom: 1px dotted black;
+          padding-bottom: 1px;
+          margin-right: 2px;
+          font-size: 12px;
+          font-family: "Courier New", Courier, monospace;
+          font-weight: 100; }
+          body .post-item-home-page .show-post-blog-meta-category .show-blog-categorys a:first-child {
+            margin-left: 2px; }
+          body .post-item-home-page .show-post-blog-meta-category .show-blog-categorys a:hover {
+            text-decoration: none;
+            color: #f47e00; }
+        body .post-item-home-page .show-post-blog-meta-category .show-blog-categorys .show-blog-category-item {
+          margin-left: 4px; }
+      body .post-item-home-page .show-post-blog-meta-category .show-blog-tags {
+        color: #d2d2d2;
+        padding-right: 15px; }
+        body .post-item-home-page .show-post-blog-meta-category .show-blog-tags a {
+          color: #222;
+          border-bottom: 1px dotted black;
+          padding-bottom: 1px;
+          margin-right: 2px;
+          font-size: 12px;
+          font-family: "Courier New", Courier, monospace;
+          font-weight: 100; }
+          body .post-item-home-page .show-post-blog-meta-category .show-blog-tags a:first-child {
+            margin-left: 2px; }
+          body .post-item-home-page .show-post-blog-meta-category .show-blog-tags a:hover {
+            text-decoration: none;
+            color: #f47e00; }
+      body .post-item-home-page .show-post-blog-meta-category .show-blog-date {
+        font-size: 10px; }
+    body .post-item-home-page .show-post-value p {
+      font-size: 20px;
+      font-weight: 50;
+      line-height: 46px;
+      letter-spacing: 1px;
+      font-family: 'Times New Roman', Times, serif; }
+    body .post-item-home-page .post-item-footer {
+      padding: 20px 0 5px 0; }
+      body .post-item-home-page .post-item-footer a {
+        font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+        padding: 6px 22px;
+        border-radius: 30px;
+        border: 1px solid #f47e00;
+        font-size: 16px;
+        color: black; }
+        body .post-item-home-page .post-item-footer a:hover {
+          text-decoration: none;
+          color: white;
+          background-color: #f47e00; }
+    body .post-item-home-page hr {
+      margin-top: 30px; }
+
+/*# sourceMappingURL=style.css.map */

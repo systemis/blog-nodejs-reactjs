@@ -1,0 +1,44 @@
+div.read-post-page{
+    padding-bottom: 25px;
+    & #show-value-of-post-to-read {
+        padding-top: 40px;
+        & h4{
+            font-weight: bold;
+        }
+        & p{
+            font-size: 18px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        & img {
+            width: 100%;
+        }
+        & i.fa{
+            font-size: 18px;
+            color: darkorange;
+        }
+    }
+    & .show-relates-post{
+        & .relate-post-item{
+            padding: 5px 15px;
+            & .child{
+                & .show-image{
+                    & img{
+                        width: 100%;
+                        border-radius: 10px;
+                    }
+                }
+                & .show-title{
+                    & a{
+                        color: black;
+                        text-decoration: none;
+                        font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+                        &:hover{
+                            text-decoration: none;
+                            color: #24890d;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

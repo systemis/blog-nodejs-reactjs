@@ -1,0 +1,29 @@
+.create-new-blog-post-page .title-create-new-page {
+  font-family: inherit; }
+.create-new-blog-post-page .create-new-group {
+  padding: 10px 40px; }
+  .create-new-blog-post-page .create-new-group #form-input {
+    width: 100%; }
+    .create-new-blog-post-page .create-new-group #form-input input, .create-new-blog-post-page .create-new-group #form-input textarea {
+      width: 100%;
+      border: none;
+      border: 0.5px solid darkgray; }
+  .create-new-blog-post-page .create-new-group .cp-btn a, .create-new-blog-post-page .create-new-group .cp-btn button {
+    width: 100%;
+    margin-top: 10px; }
+
+#input-user-value {
+  text-align: center; }
+  #input-user-value input[type=text], #input-user-value input[type=password] {
+    max-width: 300px;
+    width: 300px;
+    padding: 10px 3px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 10px;
+    border: 0.5px solid gray; }
+  #input-user-value .btn {
+    border-radius: 10px;
+    padding: 5px 50px; }
+
+/*# sourceMappingURL=new-blog-style.css.map */

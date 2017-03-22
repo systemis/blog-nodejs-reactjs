@@ -1,0 +1,79 @@
+div.header{
+    @mixin fledx-group(){
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 0;
+        padding-left: 0; 
+    }    
+    width: 100%;
+    & .navbar{
+        min-height: 0;
+        position: relative;
+        &.navbar-default{
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            border-bottom: 0.2px solid darkgray;
+            & .container-fluid{
+                & .navbar-collapse{
+                    padding: 0 5px 0 0;
+                    & .navbar-nav{
+                        & li{
+                            & a{
+                                padding: 10px 15px;
+                            }
+                            &.active a{
+                                background-color: transparent;
+                            }
+                        }
+                        & .navbar-right{
+                            & li{
+                                & a{
+                                    padding: 5px;
+                                }
+                            }
+                        }
+                        @media screen and (max-width: 768px) {
+                            & li{
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+            @media screen and (max-width: 768px) {
+                border: none;
+            }
+        }
+    }
+    & .header-title-writing-back{
+        padding-top: 20px;
+        @include fledx-group();
+        & a{
+            @include fledx-group();
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            &:hover{
+                text-decoration: none;
+            }
+            & p{
+                & span:first-child{
+                    font-weight: 200;
+                    color: #222;
+                    font-size: 40px;
+                    line-height: 50px;
+                    &::after{
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+        & i.fa{
+            margin-top: 30px;
+            text-align: right;
+            padding-right: 10px;
+            @media screen and (max-width: 768px){
+                display: none;
+            }
+        }
+    }
+}

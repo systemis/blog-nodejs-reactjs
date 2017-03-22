@@ -1,0 +1,33 @@
+div.footer {
+  width: 100%; }
+  div.footer .show-info-about-me h4 {
+    font-family: Georgia, serif;
+    font-size: 1.5em; }
+  div.footer .show-info-about-me .about-me-show-info #show-avatar-me img {
+    width: 100%;
+    border-radius: 15px; }
+  div.footer .show-info-about-me .about-me-show-info .footer-about-me-show-info-me-text {
+    padding: 10px 0 0 0;
+    margin-bottom: 45px;
+    text-align: justify;
+    font-size: 14px;
+    line-height: 23px;
+    color: #666;
+    letter-spacing: 1px; }
+  div.footer .show-info-about-me .about-me-show-quotations {
+    padding-left: 5px; }
+    div.footer .show-info-about-me .about-me-show-quotations .about-me-show-puotations-quotation-item p span {
+      font-weight: bold;
+      font-size: 15px; }
+  div.footer .show-info-about-me .about-me-show-gallerys {
+    padding-left: 5px; }
+    div.footer .show-info-about-me .about-me-show-gallerys .about-me-show-gallerys-gallery-item {
+      padding-right: 5px;
+      padding-bottom: 5px; }
+      div.footer .show-info-about-me .about-me-show-gallerys .about-me-show-gallerys-gallery-item .child img {
+        width: 100%; }
+  div.footer .last-footer {
+    padding-top: 5px;
+    padding-bottom: 10px; }
+
+/*# sourceMappingURL=footer-style.css.map */

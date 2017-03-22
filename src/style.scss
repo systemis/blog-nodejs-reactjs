@@ -1,0 +1,136 @@
+body{
+    $orange-color: #f47e00;
+    $gray-color  : #d2d2d2;
+    font-family: 'Lora', serif;
+
+    & .row{
+        margin-right: 0;
+        margin-left: 0;
+    }
+    & .col-md-4, .col-sm-4{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    
+    div.app{
+        padding: 0 5px 3px;
+        position: relative;
+        @media screen and (min-width: 1200px){
+            padding: 0 130px;
+            @media screen and (max-width: 991px){
+                padding: 0 70px;
+            }
+        }
+    }
+    
+    & .dot{
+        border-radius: 50%;
+        margin: 0 10px;
+        font-size: 44px;
+        &.red{
+            color: red;
+        }
+    }
+
+    & .post-item-home-page{
+        padding-top: 10px;
+        & img{
+            width: 100%;
+            border-radius: 10px;
+        }
+        & .show-post-image{
+            
+        }
+        & .show-post-title{
+            padding: 20px 0 0px 0;
+            & h2{
+                font-size: 25px;
+                margin-top: 0;
+                line-height: 35px;
+                letter-spacing: 1px;
+                & a{
+                    color: black;
+                    &:hover{
+                        text-decoration: none;
+                        color: #24890d;
+                    }
+                }
+            }
+        }
+        & .show-post-blog-meta-category{
+            padding: 0 0 10px 0;
+            @mixin officialGroupCharHChild(){
+                color: $gray-color;
+                padding-right: 15px;
+                & a{
+                    &:first-child{
+                        margin-left: 2px;
+                    }
+                    color: #222;
+                    border-bottom: 1px dotted black;
+                    padding-bottom: 1px;
+                    margin-right: 2px;
+                    font-size: 12px;
+                    font-family: "Courier New", Courier, monospace;
+                    font-weight: 100;
+                    &:hover{
+                        text-decoration: none;
+                        color: $orange-color;
+                    }
+                }
+            }
+            & .show-image-icon-is-image{
+                padding-right: 20px;
+                & a{
+                    color: $gray-color;
+                    & i{
+                        font-size: 17px;
+                        &:hover{
+                            color: $orange-color;
+                        }
+                    }
+                }
+            }
+            & .show-blog-categorys{
+                @include officialGroupCharHChild();
+                & .show-blog-category-item{
+                    margin-left: 4px;
+                }
+            }
+            & .show-blog-tags{
+                @include officialGroupCharHChild();
+            }
+            & .show-blog-date{
+                font-size: 10px ;
+            }
+        }
+        & .show-post-value{
+            & p{
+                font-size: 20px;
+                font-weight: 50;
+                line-height: 46px;
+                letter-spacing: 1px;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+        & .post-item-footer{
+            padding: 20px 0 5px 0;
+            & a{
+                font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+                padding: 6px 22px;
+                border-radius: 30px;
+                border: 1px solid $orange-color;
+                font-size: 16px;
+                color: black;
+                &:hover{
+                    text-decoration: none;
+                    color: white;
+                    background-color: $orange-color;
+                }
+            }
+        }
+        & hr{
+            margin-top: 30px;
+        }
+    }
+}

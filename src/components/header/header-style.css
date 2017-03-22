@@ -1,0 +1,54 @@
+div.header {
+  width: 100%; }
+  div.header .navbar {
+    min-height: 0;
+    position: relative; }
+    div.header .navbar.navbar-default {
+      background-color: transparent;
+      border: none;
+      border-radius: 0;
+      border-bottom: 0.2px solid darkgray; }
+      div.header .navbar.navbar-default .container-fluid .navbar-collapse {
+        padding: 0 5px 0 0; }
+        div.header .navbar.navbar-default .container-fluid .navbar-collapse .navbar-nav li a {
+          padding: 10px 15px; }
+        div.header .navbar.navbar-default .container-fluid .navbar-collapse .navbar-nav li.active a {
+          background-color: transparent; }
+        div.header .navbar.navbar-default .container-fluid .navbar-collapse .navbar-nav .navbar-right li a {
+          padding: 5px; }
+        @media screen and (max-width: 768px) {
+          div.header .navbar.navbar-default .container-fluid .navbar-collapse .navbar-nav li {
+            text-align: center; } }
+      @media screen and (max-width: 768px) {
+        div.header .navbar.navbar-default {
+          border: none; } }
+  div.header .header-title-writing-back {
+    padding-top: 20px;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0; }
+    div.header .header-title-writing-back a {
+      margin-right: 0;
+      margin-left: 0;
+      padding-right: 0;
+      padding-left: 0;
+      font-family: "Comic Sans MS", cursive, sans-serif; }
+      div.header .header-title-writing-back a:hover {
+        text-decoration: none; }
+      div.header .header-title-writing-back a p span:first-child {
+        font-weight: 200;
+        color: #222;
+        font-size: 40px;
+        line-height: 50px; }
+        div.header .header-title-writing-back a p span:first-child::after {
+          border-radius: 50%; }
+    div.header .header-title-writing-back i.fa {
+      margin-top: 30px;
+      text-align: right;
+      padding-right: 10px; }
+      @media screen and (max-width: 768px) {
+        div.header .header-title-writing-back i.fa {
+          display: none; } }
+
+/*# sourceMappingURL=header-style.css.map */
