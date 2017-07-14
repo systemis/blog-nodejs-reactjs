@@ -9,20 +9,24 @@ class FindCategoryPage extends Component {
         this.state = {
             Data: []
         }
-        var self = this;
+    }
 
+    componentDidMount() {
+        const sefl = this;
+        const name = this.props.match.params.name;
         $.ajax({
-            url: '',
+            url: `/writting/category/${name}`,
             type: 'post',
             success: (data) => {
                 if(data.length > 0){
-                    self.setState({Data: data});
+                    sefl.setState({Data: data});
                 }
             }
         })
     }
+    
     render () {
-        //console.log(this.props);
+        console.log(this.props);
         return (
             <div className="find-cate-gory-page">
                 <h1> Find category </h1>

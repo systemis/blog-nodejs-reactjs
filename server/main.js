@@ -91,10 +91,11 @@ router.post('/get-all-blog', (req, res) => {
     //res.send('Fail to get data ...');
 
     postDM.getAllPosts((err, result) => {
+        console.log(result);
         if(err) return res.send(err);
         result.map((row) => { row.value = row.value.substr(0, 400) + " ... "; })
 
-        return res.send(result.rows);
+        return res.send(result);
     })
 })
 
@@ -236,20 +237,14 @@ router.post('/writting/category/:name', (req, res) => {
     //     }
     // })
 
-    postDM.findPostsByCategory((err, result) => {
+    postDM.findPostsByCategory(categoryName, (err, result) => {
+        console.log(result);
         if(err) return res.send(`That bai`);
 
-        var rows = result;
-        var realRows = [];
-        for(var i = 0; i < rows.length; i++){
-            if(rows[i].category.indexOf(categoryName) !== -1){
-                realRows.push(rows[i]);
-            }
-        }
-            realRows.map((row) => {
+        result.map((row) => {
             row.value = row.value.substr(0, 400) + " ... ";
         })
-        return res.send(realRows);
+        return res.send(result);
     })
 });
 
@@ -271,7 +266,9 @@ router.post('/writting/tag/:name', (req, res) => {
     //     }
     // })
 
-    postDM.findPostsByTag((err, result) => {
+    postDM.findPostsByTag(tag, (err, result) => {
+        console.log(result);
+
         if(err) return res.send('That bai');
 
         result.map((row) => {
@@ -372,5 +369,7 @@ router.post('/login-admin-edit', (req, res) => {
         return res.send(true);
     })
 })
+
+// categorysDm.dropTable();
 
 module.exports = router;

@@ -24,6 +24,9 @@ class HomePage extends Component {
             ]
         }
 
+    }
+
+    componentDidMount() {
         // Get all blog here 
         var self = this;
         $.ajax({
@@ -37,6 +40,7 @@ class HomePage extends Component {
             }
         })
     }
+
     render() {
         return (
             <div className="home-page container">
