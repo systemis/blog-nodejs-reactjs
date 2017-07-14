@@ -1,10 +1,11 @@
-const express = require('express');
-const router  = express.Router();
-const morgan  = require('morgan');
-const path    = require('path');
-const multer  = require('multer');
-const postDM  = require('./model/database-post.js');
-const adminDM = require('./model/database-admin.js');
+const express     = require('express');
+const router      = express.Router();
+const morgan      = require('morgan');
+const path        = require('path');
+const multer      = require('multer');
+const postDM      = require('./model/database-post.js');
+const adminDM     = require('./model/database-admin.js');
+const categorysDm = require('./model/database-category.js');
 
 //var pool      = require('pg');
 //pool.defaults.ssl = true;
@@ -283,16 +284,22 @@ router.post('/writting/tag/:name', (req, res) => {
 
 // Get all category to use for wrtting/create-new 
 router.post('/get-all-categorys', (req, res) => {
-    pool.connect((err, client, done) => {
-        if(!err){
-            client.query('SELECT * FROM categorysmanager', (err, result) => {
-                if( !err ){
-                    return res.send(result.rows);
-                }
-            })
-        }else{
-            res.send("Lay key that bai .");
-        }
+    // pool.connect((err, client, done) => {
+    //     if(!err){
+    //         client.query('SELECT * FROM categorysmanager', (err, result) => {
+    //             if( !err ){
+    //                 return res.send(result.rows);
+    //             }
+    //         })
+    //     }else{
+    //         res.send("Lay key that bai .");
+    //     }
+    // })
+
+    categorysDm.getAllCategorys((err, result) => {
+        if(err) return res.send("Lay key that bai .");;
+
+        return res.send(result);
     })
 })
 

@@ -1,5 +1,14 @@
 var mysql = require('mysql');
 
+module.exports = mysql.createConnection({
+  connectionLimit: 100,
+  host: 'db4free.net',
+  port: 3307,
+  user: 'systemis_blog_dt',
+  password: 'systemis_blog',
+  database: 'systemis_blog_dt',
+})
+
 
 // var pg = require('pg');
 // var config = {
