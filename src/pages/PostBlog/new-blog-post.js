@@ -43,9 +43,8 @@ class NewPostPage extends Component {
             if(choice === '/writting/create-new'){
             }else if (choice.indexOf("/writting/edit/") !== -1){
                 $.ajax({
-                    url: "/getpost/id/",
+                    url: `/getpost/id/${self.postId}`,
                     type: "POST",
-                    data: { id: self.postId },
                     success: (data) => {
                         //self.setState({ Data: data});
                         $("#title-create-new-page")     .empty();
@@ -59,19 +58,7 @@ class NewPostPage extends Component {
                         $("#form-input").add($.parseHTML("<input type='hidden' name='d_image' value='"+data.image+"' />"))
                         // Dùng để chuyển đổi chuỗi thư mục thành mạng chứa các thư mục để gán cho state .
                         if(data.category){
-                            var categorys = data.category;
-                            var indexP = [];
-                            var chT = categorys.split('');
-                            var j = categorys.length;
-                            for(var i = categorys.length - 1; i >= 0; i--){
-                                if(chT[i] === ','){
-                                    indexP.push(categorys.substr(i + 1, j));
-                                    j = i;
-                                }else if (i === 0){
-                                    indexP.push(categorys.substr(i, j));
-                                }
-                            }
-                            self.setState({category: indexP});
+                            self.setState({category: JSON.parse(data.category)});
                         }
                     }
                 })

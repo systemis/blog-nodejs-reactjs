@@ -80,8 +80,6 @@ router.post('/writting/create-new', Upload.any(), (req, res) => {
     })
 })
 
-
-// Get a post by id 
 router.post('/getpost/id/:id', (req, res) => {
     const postId = req.params.id;
     postDM.findPostById(postId, (err, result) => {
@@ -92,7 +90,6 @@ router.post('/getpost/id/:id', (req, res) => {
 })
 
 
-// Get three relate post with id
 router.post('/get-relate-post', (req, res) => {
     postDM.getAllPosts((err, result) => {
         if(err) return res.send('Khong co du lieu');
@@ -198,7 +195,5 @@ router.post('/login-admin-edit', (req, res) => {
         return res.send(true);
     })
 })
-
-// categorysDm.dropTable();
 
 module.exports = router;
