@@ -11,7 +11,7 @@ class PostDM{
 
     findPostById(id, fn){
         connection.query(`SELECT * FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
-            fn(err, result);
+            fn(err, result[0]);
         })
     }
 

@@ -82,8 +82,8 @@ router.post('/writting/create-new', Upload.any(), (req, res) => {
 
 
 // Get a post by id 
-router.post('/getpost/id/', (req, res) => {
-    const postId = req.body.id;
+router.post('/getpost/id/:id', (req, res) => {
+    const postId = req.params.id;
     postDM.findPostById(postId, (err, result) => {
         if(err) return res.send('That bai');
 

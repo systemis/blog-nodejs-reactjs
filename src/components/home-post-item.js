@@ -4,18 +4,19 @@ import $ from 'jquery';
 class HomePostItem extends Component {
     constructor(props) {
         super(props);
-        if(!this.props.isV) { this.props.Data.id = "#"; }
-
+        // if(!this.props.isV) { this.props.Data.id = "#"; }
         this.state = {categorys: []};
     }
 
-    componentDidMount() {
-        const categorys = this.props.Data.category;
-        this.setState({categorys: JSON.parse(categorys)});
+    
+    getCategorys() {
+        if(this.state.categorys.length <= 0 && this.props.Data.category){
+            const category = this.props.Data.category;
+            this.setState({categorys: JSON.parse(category)});
+        }
     }
     
     isRenderValue(){
-        console.log( this.props.isV );
         if( this.props.isV) {
             return (
                 <div>
@@ -40,14 +41,11 @@ class HomePostItem extends Component {
     }
     
     handlingShowImage(){
-        console.log(this.props.Data.image);
-        if(this.props.Data.image){
-            return (
-                <div className="show-post-image">
-                    <img src={ this.props.Data.image } alt="Image about this post "/>
-                </div>
-            )
-        }
+        return (
+            <div className="show-post-image">
+                <img src={ this.props.Data.image } alt="Image about this post "/>
+            </div>
+        )
     }
     
     handlingShowTitle(){
@@ -59,19 +57,18 @@ class HomePostItem extends Component {
     }
     
     handlingShowTag(){
-        if(this.props.Data.tag){
-            return (
-                <span className="show-blog-tags">
-                    Tags: 
-                    <span>
-                        <a className="show-blog-tag-item"  href={ "/writting/tag/" + this.props.Data.tag}> { this.props.Data.tag }</a> 
-                    </span>
+        return (
+            <span className="show-blog-tags">
+                Tags: 
+                <span>
+                    <a className="show-blog-tag-item"  href={ "/writting/tag/" + this.props.Data.tag}> { this.props.Data.tag }</a> 
                 </span>
-            )
-        }
+            </span>
+        )
     }
     
     render() {
+        this.getCategorys();
         return (
             <div className="post-item-home-page">
                 { this.handlingShowImage() }

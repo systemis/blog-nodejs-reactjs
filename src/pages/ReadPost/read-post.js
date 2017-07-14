@@ -11,30 +11,34 @@ class ReadPage extends Component {
     constructor(props){
         super(props);
         const self   = this; 
-        this.postId = this.props.match.params.id;
+        this.postId  = this.props.match.params.id;
+        this.renderValuePost = this.renderValuePost.bind(this);
         this.state = {
             Data: {
-                    id: 11,
-                    image: IM1,
-                    title: 'Restaurant Employer Read Clients Orders On His iPad',
-                    category: 'nodejs',
-                    tag: 'city',
-                    time: 'March 16 20117',
-                    value: "<strong>'It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …', </strong>",
-                    date: new Date().toLocaleDateString()
+                    // id: 11,
+                    // image: IM1,
+                    // title: 'Restaurant Employer Read Clients Orders On His iPad',
+                    // category: 'nodejs',
+                    // tag: 'city',
+                    // time: 'March 16 20117',
+                    // value: "<strong>'It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …', </strong>",
+                    // date: new Date().toLocaleDateString()
                 },
             RelatePostsData: []
         }
-        // Get data of post 
+    }
+
+    componentWillMount() {
+        const self   = this; 
         $.ajax({
-            url: "/getpost/id/",
+            url: `/getpost/id/${self.postId}`,
             type: "POST",
-            data: { id: self.postId },
             success: (data) => {
+                console.log(data);
                 self.setState({ Data: data});
             }
         })
-        //Get relate post data 
+        
         $.ajax({
             url: "/get-relate-post",
             type: "post",
@@ -43,15 +47,16 @@ class ReadPage extends Component {
                     self.setState({RelatePostsData: data});
                 }
             }
-        })
-        this.renderValuePost = this.renderValuePost.bind(this);
+        })   
     }
+    
     renderValuePost(){
         $(document).ready(() => {
             $("#show-value-of-post-to-read").empty();
             $("#show-value-of-post-to-read").append($.parseHTML( this.state.Data.value ));
         })
     }
+    
     render() {
         return (
             <div className="read-post-page">
