@@ -13,7 +13,6 @@ const togettherRoute = (req, res) => res.sendFile(path.resolve(__dirname, '..', 
 
 router.use(morgan(':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version" :status :res[content-length] :response-time ms'));
 
-// Custom for function to save the image was uploaded 
 var fileName = '';
 var storage  = multer.diskStorage({
     destination: function(req, file, cb) {

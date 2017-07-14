@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
+import $                    from 'jquery';
+import './footer-style.css';
 
-require('./footer-style.css');
+const avatar = require('./accest/avatar-me.jpg');
+const GL1    = require('./accest/1.jpg');
+const GL2    = require('./accest/2.jpg');
+const GL3    = require('./accest/3.jpg');
+const GL4    = require('./accest/4.jpg');
+const GL5    = require('./accest/5.jpg');
+const GL6    = require('./accest/6.jpg');
+const GL7    = require('./accest/7.jpg');
+const GL8    = require('./accest/8.jpg');
+const GL9    = require('./accest/9.jpg');
 
-var GL1 = require('./accest/1.jpg');
-var GL2 = require('./accest/2.jpg');
-var GL3 = require('./accest/3.jpg');
-var GL4 = require('./accest/4.jpg');
-var GL5 = require('./accest/5.jpg');
-var GL6 = require('./accest/6.jpg');
-var GL7 = require('./accest/7.jpg');
-var GL8 = require('./accest/8.jpg');
-var GL9 = require('./accest/9.jpg');
 
-
-var QuotationsItem = (props) => (
+const QuotationsItem = (props) => (
     <div className="about-me-show-puotations-quotation-item">
         <p>
             <span> { props.man} : </span>
@@ -22,7 +23,7 @@ var QuotationsItem = (props) => (
     </div>
 )
 
-var GalleryItem = (props) => (
+const GalleryItem = (props) => (
     <div className="about-me-show-gallerys-gallery-item col-md-4 col-sm-4 col-xs-4">
         <div className="child">
             <img src={props.image} alt="Gallery image"/>
@@ -45,10 +46,10 @@ class Footer extends Component {
                     <div className="about-me-show-info col-md-4 col-sm-4">
                         <h4> About me </h4>
                         <a id="show-avatar-me" href="http://systemiscv.herokuapp.com/">
-                            <img src="http://systemiscv.herokuapp.com/static/media/avatar-me.9011793c.png" alt="Image about me" />
+                            <img src={avatar} alt="Image about me" />
                         </a>
                         <p className="footer-about-me-show-info-me-text">
-                            Tên thật của mình là Phạm Văn Thịnh, dân tình thường gọi mình là <strong> Systemis </strong> bởi vì đó là biệt danh tự chế của mình khi gia nhập giang hồ (online). Mình 15 tuổi, hiện đang là học sinh nhưng mình coi cái công việc freelancer quan trọng hơn. Thịnh đã từng làm freelancer Android và bây giờ là fullstack web (tức là gánh luôn cả font-end và back-end) nên mục đích của mình khi làm blog này là muốn chia sẽ những kiến thức, kinh nghiệm trong 2 lĩnh vực trên tới các anh em mới gia nhập giang hồ, cũng có vài bài chia sẽ về đời sống mình.
+                             Mình là Thinh - nickname là: <strong> Systemis </strong>. Mình 15 tuổi, hiện đang là học sinh tại Đà Nẵng. Thịnh đã từng làm freelancer Android và bây giờ là fullstack web (tức là gánh luôn cả font-end và back-end). Thịnh vẫn FA nên ai muốn làm quen cứ thoải mái ib <a href="https://www.facebook.com/profile.php?id=100009763863563"> facebook </a> . 
                         </p>
                     </div>
                     <div className="about-me-show-quotations col-md-4 col-sm-4">

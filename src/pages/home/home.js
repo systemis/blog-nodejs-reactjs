@@ -10,18 +10,7 @@ class HomePage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            Data: [
-                // {
-                //     id: 11,
-                //     image: IM1,
-                //     title: 'Restaurant Employer Read Clients Orders On His iPad',
-                //     category: 'nodejs',
-                //     tag: 'city',
-                //     time: 'March 16 20117',
-                //     value: "<strong>'It’s no secret that the digital industry is booming. From exciting startups to global brands, companies are reaching out to digital agencies, responding to the new possibilities available. However, the industry is fast becoming overcrowded, heaving with agencies offering similar services — on the surface, at least. Producing creative, fresh projects is the key to standing out. Unique side projects are the best place to innovate, but balancing commercially and creatively lucrative work is tricky. So, this article looks at …', </strong>",
-                //     date: new Date().toLocaleDateString()
-                // }
-            ]
+            Data: []
         }
 
     }
