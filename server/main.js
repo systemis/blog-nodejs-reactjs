@@ -4,6 +4,7 @@ const morgan  = require('morgan');
 const path    = require('path');
 const multer  = require('multer');
 const postDM  = require('./model/database-post.js');
+const adminDM = require('./model/database-admin.js');
 
 //var pool      = require('pg');
 //pool.defaults.ssl = true;
@@ -338,18 +339,30 @@ router.post('/writting/edit/:id', Upload.any(), (req, res) => {
 });
 
 router.post('/login-admin-edit', (req, res) => {
-    pool.connect((err, client, done) => {
-        if(!err){
-            client.query("SELECT * FROM admininfo", (err, result) => {
-                if(!err){
-                    return res.send(result.rows[0]);
-                }else{
-                    res.send(err);
-                }
-            })
-        }else{
-            res.send(err);
-        }
+    // pool.connect((err, client, done) => {
+    //     if(!err){
+    //         client.query("SELECT * FROM admininfo", (err, result) => {
+    //             if(!err){
+    //                 return res.send(result.rows[0]);
+    //             }else{
+    //                 res.send(err);
+    //             }
+    //         })
+    //     }else{
+    //         res.send(err);
+    //     }
+    // })
+
+    const username = req.body.username;
+    const password = req.body.password;
+
+    adminDM.getAdminInfo((err, result) => {
+        console.log(result);
+
+        if(err) return res.send(false);
+        if(username !== result.username && password !== result.password) return res.send(false);
+
+        return res.send(true);
     })
 })
 

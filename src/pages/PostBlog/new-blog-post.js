@@ -206,14 +206,13 @@ class NewPostPage extends Component {
                 $.ajax({
                     url: '/login-admin-edit',   
                     type: 'post',
+                    data: {username: userName, password: passWord},
                     success: (data) => {
-                        if(data !== null){
-                            if(userName === data.username && passWord === data.password){
-                                self.setState({okRe: true});
-                                self.handlingSubmit(self.props.location.pathname);
-                                $("#input-user-value").hide();
-                            }
-                        }
+                        if(!data) return alert('That bai');
+                        
+                        self.setState({okRe: true});
+                        self.handlingSubmit(self.props.location.pathname);
+                        $("#input-user-value").hide();
                     }
                 })
             })
