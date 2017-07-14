@@ -15,6 +15,18 @@ class PostDM{
         })
     }
 
+    findPostsByCategory(category, fn){
+        connection.query(`SELECT * FROM ${tableName} WHERE category = ?`, [category], (err, result) => {
+            fn(err, result);
+        })
+    }
+
+    findPostsByTag(tag, fn){
+        connection.query(`SELECT * FROM ${tableName} WHERE tag = ?`, [tag], (err, result) => {
+            fn(err, result);
+        })
+    }
+
     getAllPosts(fn){
         connection.query(`SELECT * FROM ${tableName}`, (err, result) => {
             fn(err, result);

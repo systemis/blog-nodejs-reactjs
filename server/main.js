@@ -234,7 +234,7 @@ router.post('/writting/category/:name', (req, res) => {
     //     }
     // })
 
-    postDM.getAllPosts((err, result) => {
+    postDM.findPostsByCategory((err, result) => {
         if(err) return res.send(`That bai`);
 
         var rows = result;
@@ -254,22 +254,22 @@ router.post('/writting/category/:name', (req, res) => {
 // Get posts by tag
 router.post('/writting/tag/:name', (req, res) => {
     var tag = req.params.name;
-    pool.connect((err, client, done) => {
-        if(!err){
-            client.query("SELECT * FROM postmanager WHERE tag='"+ tag +"' ORDER BY id ASC", (err, result) => {
-                if(!err){
-                    result.rows.map((row) => {
-                        row.value = row.value.substr(0, 400) + " ... ";
-                    })
-                    return res.send(result.rows);
-                }
-            })
-        }else{
-            res.send('That bai');
-        }
-    })
+    // pool.connect((err, client, done) => {
+    //     if(!err){
+    //         client.query("SELECT * FROM postmanager WHERE tag='"+ tag +"' ORDER BY id ASC", (err, result) => {
+    //             if(!err){
+    //                 result.rows.map((row) => {
+    //                     row.value = row.value.substr(0, 400) + " ... ";
+    //                 })
+    //                 return res.send(result.rows);
+    //             }
+    //         })
+    //     }else{
+    //         res.send('That bai');
+    //     }
+    // })
 
-    postDM.getAllPosts((err, result) => {
+    postDM.findPostsByTag((err, result) => {
         if(err) return res.send('That bai');
 
         result.map((row) => {
@@ -298,6 +298,7 @@ router.post('/get-all-categorys', (req, res) => {
 
 // Update post
 router.post('/writting/edit/:id', Upload.any(), (req, res) => {
+    var id       = req.params.id;
     var title    = req.body.title;
     var value    = req.body.value;
     var tag      = req.body.tag;
@@ -305,7 +306,7 @@ router.post('/writting/edit/:id', Upload.any(), (req, res) => {
     var image    = req.body.d_image;
     var date     = new Date().toLocaleDateString();
     var repply   = 'repply';
-    if(fileName && fileName !== 'undefined') image = fileName;
+    if(fileName) image = fileName;
     filename     = '';
 
     if(tag.split('')[tag.length - 1] === ' '){
@@ -315,14 +316,24 @@ router.post('/writting/edit/:id', Upload.any(), (req, res) => {
     }
 
 
-    pool.connect((err, client, done) => {
-        if(!err){
-            client.query("UPDATE postmanager SET title='"+ title +"', value='"+ value +"', image='"+ image +"', repply='"+ repply +"', date='"+ date +"', category='"+ category +"', tag='"+ tag +"' WHERE id='"+ req.params.id +"'", (err) => {
-                if(!err){
-                    res.redirect('/');
-                }
-            })
-        }
+    const bundle = {
+        title: title, value: value, tag: tag, category: category, image: image, date: date, repply: repply
+    }
+
+    // pool.connect((err, client, done) => {
+    //     if(!err){
+    //         client.query("UPDATE postmanager SET title='"+ title +"', value='"+ value +"', image='"+ image +"', repply='"+ repply +"', date='"+ date +"', category='"+ category +"', tag='"+ tag +"' WHERE id='"+ req.params.id +"'", (err) => {
+    //             if(!err){
+    //                 res.redirect('/');
+    //             }
+    //         })
+    //     }
+    // })
+
+    postDM.updatePost(id, bundle, (err, result) => {
+        if(err) return res.send('that bai');
+
+        res.redirect('/');
     })
 });
 
