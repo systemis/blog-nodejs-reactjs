@@ -21,7 +21,9 @@ class NewPostPage extends Component {
                 flexWrap: 'wrap',
             },
         };
+    }
 
+    componentWillMount() {
         $.ajax({
             url: '/get-all-categorys',
             type: "POST",
@@ -37,7 +39,6 @@ class NewPostPage extends Component {
         const self  = this;
         $(document).ready(() => {
             if(choice === '/writting/create-new'){
-
             }else if (choice.indexOf("/writting/edit/") !== -1){
                 $.ajax({
                     url: "/getpost/id/",
@@ -152,20 +153,20 @@ class NewPostPage extends Component {
                             { 
                                 this.state.category.map((value, index) => {
                                     return( 
-                                    <span>
-                                        <Chip 
-                                            key={index} 
-                                            style={this.styles.chip}
-                                        > 
-                                            {value} 
-                                        </Chip>
-                                        <span onClick={() => this.handleRequestDelete(value)}>
-                                            xoa
+                                        <span>
+                                            <Chip 
+                                                key={index} 
+                                                style={this.styles.chip}
+                                            > 
+                                                {value} 
+                                            </Chip>
+                                            <span onClick={() => this.handleRequestDelete(value)}>
+                                                xoa
+                                            </span>
                                         </span>
-                                    </span>
                                 )})
                             }
-                            <input type="hidden" name="category" value={this.state.category}/>
+                            <input type="hidden" name="category" value={JSON.stringify(this.state.category)}/>
                         </div>
 
                         <div className="create-item input-tag">

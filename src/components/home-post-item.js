@@ -7,10 +7,11 @@ class HomePostItem extends Component {
         if(!this.props.isV) { this.props.Data.id = "#"; }
 
         this.state = {categorys: []};
+    }
 
-        // Dùng để chuyển đổi chuỗi thư mục thành mạng chứa các thư mục để gán cho state .
-        if(this.props.Data.category){
-            var categorys = this.props.Data.category;
+    componentDidMount() {
+        const categorys = this.props.Data.category;
+        if(categorys){
             console.log(categorys);
             var indexP = [];
             var chT = categorys.split('');
@@ -26,6 +27,7 @@ class HomePostItem extends Component {
             this.setState({categorys: indexP});
         }
     }
+    
     isRenderValue(){
         console.log( this.props.isV );
         if( this.props.isV) {
@@ -42,6 +44,7 @@ class HomePostItem extends Component {
             )
         }
     }
+    
     handlingValue(){
         var self = this;
         $(document).ready(function(){
@@ -49,6 +52,7 @@ class HomePostItem extends Component {
             $("#show-value-post" + self.props.Data.id).append($.parseHTML( self.props.Data.value ));
         })
     }
+    
     handlingShowImage(){
         console.log(this.props.Data.image);
         if(this.props.Data.image){
@@ -59,6 +63,7 @@ class HomePostItem extends Component {
             )
         }
     }
+    
     handlingShowTitle(){
         if( this.props.isV ){
             return ( <a href={"/writting/post/" + this.props.Data.id }> { this.props.Data.title } </a> )
@@ -66,18 +71,20 @@ class HomePostItem extends Component {
             return ( <a href="#"> { this.props.Data.title } </a> )
         }
     }
+    
     handlingShowTag(){
         if(this.props.Data.tag){
             return (
                 <span className="show-blog-tags">
                     Tags: 
                     <span>
-                            <a className="show-blog-tag-item"  href={ "/writting/tag/" + this.props.Data.tag}> { this.props.Data.tag }</a> 
+                        <a className="show-blog-tag-item"  href={ "/writting/tag/" + this.props.Data.tag}> { this.props.Data.tag }</a> 
                     </span>
                 </span>
             )
         }
     }
+    
     render() {
         return (
             <div className="post-item-home-page">

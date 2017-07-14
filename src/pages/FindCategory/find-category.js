@@ -26,7 +26,6 @@ class FindCategoryPage extends Component {
     }
     
     render () {
-        console.log(this.props);
         return (
             <div className="find-cate-gory-page">
                 <h1> Find category </h1>
