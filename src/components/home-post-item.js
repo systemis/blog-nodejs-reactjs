@@ -11,21 +11,7 @@ class HomePostItem extends Component {
 
     componentDidMount() {
         const categorys = this.props.Data.category;
-        if(categorys){
-            console.log(categorys);
-            var indexP = [];
-            var chT = categorys.split('');
-            var j = categorys.length;
-            for(var i = categorys.length - 1; i >= 0; i--){
-                if(chT[i] === ','){
-                    indexP.push(categorys.substr(i + 1, j));
-                    j = i;
-                }else if (i === 0){
-                    indexP.push(categorys.substr(i, j));
-                }
-            }
-            this.setState({categorys: indexP});
-        }
+        this.setState({categorys: JSON.parse(categorys)});
     }
     
     isRenderValue(){
@@ -48,7 +34,7 @@ class HomePostItem extends Component {
     handlingValue(){
         var self = this;
         $(document).ready(function(){
-            //$(".show-post-post-value").empty();
+            // $(".show-post-post-value").empty();
             $("#show-value-post" + self.props.Data.id).append($.parseHTML( self.props.Data.value ));
         })
     }

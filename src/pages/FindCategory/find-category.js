@@ -31,7 +31,10 @@ class FindCategoryPage extends Component {
                 <h1> Find category </h1>
                 {
                    this.state.Data.map((value, index) => {
-                       return <HomePostItem isV={ true } key={ this.state.Data.length - index - 1} Data= { this.state.Data[ this.state.Data.length - index - 1]} />
+                       return <HomePostItem 
+                                    isV={ true } 
+                                    key={ this.state.Data.length - index - 1} 
+                                    Data= { this.state.Data[ this.state.Data.length - index - 1]} />
                    })
                 }
             </div>

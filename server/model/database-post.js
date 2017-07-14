@@ -16,8 +16,17 @@ class PostDM{
     }
 
     findPostsByCategory(category, fn){
-        connection.query(`SELECT * FROM ${tableName} WHERE category = ?`, [category], (err, result) => {
-            fn(err, result);
+        console.log(category);
+        this.getAllPosts((err1, result1) => {
+            if(err1) return fn(err1, null);
+            var _result1 = [];
+            for(var i = 0; i < result1.length; i++){
+                if(result1[i].category.indexOf(category) >= 0){
+                    _result1.push(result1[i]);
+                }
+            }
+
+            return fn(null, _result1);
         })
     }
 

@@ -24,10 +24,12 @@ class NewPostPage extends Component {
     }
 
     componentWillMount() {
+        const self = this;
         $.ajax({
             url: '/get-all-categorys',
             type: "POST",
             success: (data) => {
+                console.log(data);
                 if(data.length > 0){
                     self.setState({ category_data: data});
                 }

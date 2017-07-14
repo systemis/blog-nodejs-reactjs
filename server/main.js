@@ -119,7 +119,6 @@ router.post('/get-relate-post', (req, res) => {
 router.post('/writting/category/:name', (req, res) => {
     var categoryName = req.params.name;
     postDM.findPostsByCategory(categoryName, (err, result) => {
-        console.log(result);
         if(err) return res.send(`That bai`);
 
         result.map((row) => {
