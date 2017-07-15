@@ -204,6 +204,13 @@ router.post('/writting/edit/:id', (req, res) => {
     })
 });
 
+router.post(`/writting/delete/:id`, (req, res) => {
+    const postId = req.params.id;
+    postDM.deletePost(postId, (err, result) => {
+        res.redirect('/');
+    })
+})
+
 router.post('/login-admin-edit', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;

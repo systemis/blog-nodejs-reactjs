@@ -56,6 +56,12 @@ class PostDM{
         })
     }
 
+    deletePost(id, fn){
+        connection.query(`DELETE FROM ${tableName} WHERE id = ?`, [id], (err, result) => {
+            fn(err, result);
+        })
+    }
+
     dropTable(){
         connection.query(`DROP TABLE ${tableName}`, (err, result) => {
             console.log(`Error  when delete table ${tableName}: ${err}`);

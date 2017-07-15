@@ -104,7 +104,14 @@ class NewPostPage extends Component {
                 var name     = $("#form-input #title").val();
                 var value    = $("#form-input #value").val();
                 var category = $("#form-input #category").val();
-                if(name === '' || value === '' || category === ''){
+                var image    = $("#form-input #image").val();
+                
+                console.log(name);
+                console.log(value);
+                console.log(category);
+                console.log(image);
+                
+                if(!name || !value || !category || !image){
                     return false;
                 }else{
                     return true;
@@ -114,6 +121,21 @@ class NewPostPage extends Component {
     }
     mainLayout(){
         if(!this.state.okRe) return ;
+        const btnRemove = () => {
+            if(window.location.href.indexOf('/create-new') >= 0) return ;
+            return (
+                <button 
+                    className="btn btn-danger"
+                    onClick={() => {
+                        $.ajax({
+                            url: `/writting/delete/${this.postId}`, type: `POST`,
+                        })
+                    }}>
+                    Remove 
+                </button>
+            )
+        }
+
         return (
              <div className="create-new-blog-post-page">
                 <h1 id="title-create-new-page"> Create new Blog </h1>
@@ -157,7 +179,7 @@ class NewPostPage extends Component {
                                         </span>
                                 )})
                             }
-                            <input type="hidden" name="category" value={JSON.stringify(this.state.category)}/>
+                            <input type="hidden" name="category" id="category" value={JSON.stringify(this.state.category)}/>
                         </div>
 
                         <div className="create-item input-tag">
@@ -184,6 +206,7 @@ class NewPostPage extends Component {
 
                     <div className="create-item cp-btn">
                         <a href="/" className="btn btn-primary"> Back to home </a>
+                        {btnRemove()}
                     </div>
                 </div>
             </div>
