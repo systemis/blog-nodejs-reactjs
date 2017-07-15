@@ -49,7 +49,9 @@ class PostDM{
     }
 
     updatePost(id, bundle, fn){
-        connection.query(`UPDATE ${tableName} SET title = ?, value = ?, image = ?, repply = ?, date = ?, category = ?, tag = ? WHERE id = ?`, [bundle.title, bundle.value, bundle.image, bundle.repply, bundle.date, bundle.category, bundle.tag, id], (err, result) => {
+        connection.query(`UPDATE ${tableName} SET title = ?, value = ?, image = ?, repply = ?, category = ?, tag = ? WHERE id = ?`, [bundle.title, bundle.value, bundle.image, bundle.repply, bundle.category, bundle.tag, id], (err, result) => {
+            console.log(result);
+            console.log(err);
             fn(err, result);
         })
     }

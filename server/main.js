@@ -161,39 +161,45 @@ router.post('/get-all-categorys', (req, res) => {
 
 // Update post
 router.post('/writting/edit/:id', (req, res) => {
-    
+    const updateMethod = imageUrl => {
+        console.log(req.body);
+
+        var id         = req.params.id;
+        var title      = req.body.title;
+        var value      = req.body.value;
+        var tag        = req.body.tag;
+        var category   = req.body.category;
+        var image      = req.body.d_image;
+        var date       = new Date().toLocaleDateString();
+        var repply     = 'repply';
+        if(imageUrl) image = imageUrl
+
+        if(tag.split('')[tag.length - 1] === ' '){
+            var sh = tag.split('');
+            sh.splice(tag.length - 1, 1);
+            tag = sh.join("");
+        }
+
+        const bundle = {
+            title: title, value: value, tag: tag, category: category, image: image, date: date, repply: repply
+        }
+
+        postDM.updatePost(id, bundle, (err, result) => {
+            console.log("getPro");
+            // if(err) return res.send('that bai');
+            if(imageUrl) fs.unlink(fileName);
+            fileName     = '';
+            res.redirect('/');
+        })
+    }
 
     Upload(req, res, err => {
-        if(err) return res.send('that bai');
-        imgurUploader(fs.readFileSync(filename), {title: 'post_title'}).then(data => {
-            var id       = req.params.id;
-            var title    = req.body.title;
-            var value    = req.body.value;
-            var tag      = req.body.tag;
-            var category = req.body.category;
-            var image    = req.body.d_image;
-            var date     = new Date().toLocaleDateString();
-            var repply   = 'repply';
-            if(fileName) image = data.link;
-            filename     = '';
+        if(err || !fileName) {
+            return updateMethod(null);
+        }
 
-            if(tag.split('')[tag.length - 1] === ' '){
-                var sh = tag.split('');
-                sh.splice(tag.length - 1, 1);
-                tag = sh.join("");
-            }
-
-
-            const bundle = {
-                title: title, value: value, tag: tag, category: category, image: image, date: date, repply: repply
-            }
-
-            postDM.updatePost(id, bundle, (err, result) => {
-                if(err) return res.send('that bai');
-                fs.unlink(fileName);
-
-                res.redirect('/');
-            })
+        imgurUploader(fs.readFileSync(fileName), {title: 'post_title'}).then(data => {
+            updateMethod(data.link);
         })
     })
 });

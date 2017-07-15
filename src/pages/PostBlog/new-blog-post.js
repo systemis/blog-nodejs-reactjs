@@ -55,7 +55,8 @@ class NewPostPage extends Component {
                         $("#form-input #value")         .val(data.value);
                         $("#form-input #category")      .val(data.category);
                         $("#form-input #tag")           .val(data.tag);
-                        $("#form-input").add($.parseHTML("<input type='hidden' name='d_image' value='"+data.image+"' />"))
+                        $("#form-input").append($.parseHTML("<input type='hidden' name='d_image' value='"+data.image+"' />"))
+                        console.log('adding');
                         // Dùng để chuyển đổi chuỗi thư mục thành mạng chứa các thư mục để gán cho state .
                         if(data.category){
                             self.setState({category: JSON.parse(data.category)});
@@ -112,6 +113,7 @@ class NewPostPage extends Component {
         })
     }
     mainLayout(){
+        if(!this.state.okRe) return ;
         return (
              <div className="create-new-blog-post-page">
                 <h1 id="title-create-new-page"> Create new Blog </h1>
@@ -207,7 +209,7 @@ class NewPostPage extends Component {
                 })
             })
         })
-        if(this.state.okRe) { return(self.mainLayout()) }
+        // if(this.state.okRe) { return(self.mainLayout()) }
     }
     render() {
         this.handlingAddCategoryAndCreate() 
@@ -221,9 +223,13 @@ class NewPostPage extends Component {
                         <br/>
                         <input id="login-admin" className="btn btn-primary" type="submit" value="Login to edit "/>
                 </div>
-                { this.handlingLoginAdmin() }
+                {this.mainLayout()}
             </div>
         );
+    }
+
+    componentDidMount() {
+        this.handlingLoginAdmin();
     }
 }
 
