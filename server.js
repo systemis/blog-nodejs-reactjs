@@ -10,7 +10,7 @@ var router = require('./server/main.js');
 
 app.use(router);
 
-require('./server/model/database-post.js');
+// require('./server/model/database-post.js').dropTable();
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('co nguoi dang truy cap web bang cong 3000');

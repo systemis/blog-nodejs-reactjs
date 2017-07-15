@@ -33,8 +33,8 @@ class categoryDM{
 
     dropTable(){
         connection.query(`DROP TABLE ${tableName}`, (err, result) => {
-            console.log(`Error when drop table ${tableName} is ${err}`);
-            console.log(`Drop table ${tableName} is ${result}`);
+            console.log(`Error  when delete table ${tableName}: ${err}`);
+            console.log(`Result when delete table ${tableName}: ${result}`);
         })
     }
 }

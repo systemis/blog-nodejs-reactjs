@@ -1,11 +1,13 @@
-const express     = require('express');
-const router      = express.Router();
-const morgan      = require('morgan');
-const path        = require('path');
-const multer      = require('multer');
-const postDM      = require('./model/database-post.js');
-const adminDM     = require('./model/database-admin.js');
-const categorysDm = require('./model/database-category.js');
+const express       = require('express');
+const router        = express.Router();
+const morgan        = require('morgan');
+const path          = require('path');
+const fs            = require('fs');
+const imgurUploader = require('imgur-uploader');
+const multer        = require('multer');
+const postDM        = require('./model/database-post.js');
+const adminDM       = require('./model/database-admin.js');
+const categorysDm   = require('./model/database-category.js');
 
 router.use(express.static(path.resolve(__dirname, '..', 'build')));
 
@@ -22,10 +24,10 @@ var storage  = multer.diskStorage({
         var fileType = file.originalname.substr(file.originalname.indexOf("."));
         fileName = file.originalname+ Date.now() + fileType;
         cb(false, fileName);
-        fileName = '/public/upload/' + fileName;
+        fileName = './server/public/upload/' + fileName;
     }
 })
-var Upload = multer({storage: storage});
+var Upload = multer({storage: storage}).single('image');
 
 router.get('/public/upload/:filename', (req, res) => { console.log("Có người đang muốn lấy ảnh từ dữ liệu của bạn ."); res.sendFile(path.resolve(__dirname, "public/upload/" + req.params.filename)); })
 router.get('/'                       , togettherRoute);
@@ -51,31 +53,38 @@ router.post('/get-all-blog', (req, res) => {
 
 
 // Create new blog 
-router.post('/writting/create-new', Upload.any(), (req, res) => {
-    var title    = req.body.title;
-    var value    = req.body.value;
-    var tag      = req.body.tag;
-    var category = req.body.category;
-    var image    = fileName;
-    var date     = new Date().toLocaleDateString();
-    var repply   = 'repply';
-    filename     = '';
+router.post('/writting/create-new', (req, res) => {
 
-
-    if(tag.split('')[tag.length - 1] === ' '){
-        var sh = tag.split('');
-        sh.splice(tag.length - 1, 1);
-        tag = sh.join("");
-    }
-    
-    const bundle = {
-        title: title, value: value, tag: tag, category: category, image: image, date: date, repply: repply
-    }
-
-    postDM.newPost(bundle, (err, result) => {
+    Upload(req, res, err => {
         if(err) return res.send('that bai');
-        
-        return res.redirect('/');
+        imgurUploader(fs.readFileSync(fileName), {title: 'post_image'}).then(data => {
+            var title    = req.body.title;
+            var value    = req.body.value;
+            var tag      = req.body.tag;
+            var category = req.body.category;
+            var image    = data.link;
+            var date     = new Date().toLocaleDateString();
+            var repply   = 'repply';
+            filename     = '';
+
+
+            if(tag.split('')[tag.length - 1] === ' '){
+                var sh = tag.split('');
+                sh.splice(tag.length - 1, 1);
+                tag = sh.join("");
+            }
+            
+            const bundle = {
+                title: title, value: value, tag: tag, category: category, image: image, date: date, repply: repply
+            }
+
+            postDM.newPost(bundle, (err, result) => {
+                if(err) return res.send('that bai');
+                fs.unlink(fileName);
+
+                return res.redirect('/');
+            })
+        })
     })
 })
 
@@ -151,33 +160,41 @@ router.post('/get-all-categorys', (req, res) => {
 
 
 // Update post
-router.post('/writting/edit/:id', Upload.any(), (req, res) => {
-    var id       = req.params.id;
-    var title    = req.body.title;
-    var value    = req.body.value;
-    var tag      = req.body.tag;
-    var category = req.body.category;
-    var image    = req.body.d_image;
-    var date     = new Date().toLocaleDateString();
-    var repply   = 'repply';
-    if(fileName) image = fileName;
-    filename     = '';
+router.post('/writting/edit/:id', (req, res) => {
+    
 
-    if(tag.split('')[tag.length - 1] === ' '){
-        var sh = tag.split('');
-        sh.splice(tag.length - 1, 1);
-        tag = sh.join("");
-    }
-
-
-    const bundle = {
-        title: title, value: value, tag: tag, category: category, image: image, date: date, repply: repply
-    }
-
-    postDM.updatePost(id, bundle, (err, result) => {
+    Upload(req, res, err => {
         if(err) return res.send('that bai');
+        imgurUploader(fs.readFileSync(filename), {title: 'post_title'}).then(data => {
+            var id       = req.params.id;
+            var title    = req.body.title;
+            var value    = req.body.value;
+            var tag      = req.body.tag;
+            var category = req.body.category;
+            var image    = req.body.d_image;
+            var date     = new Date().toLocaleDateString();
+            var repply   = 'repply';
+            if(fileName) image = data.link;
+            filename     = '';
 
-        res.redirect('/');
+            if(tag.split('')[tag.length - 1] === ' '){
+                var sh = tag.split('');
+                sh.splice(tag.length - 1, 1);
+                tag = sh.join("");
+            }
+
+
+            const bundle = {
+                title: title, value: value, tag: tag, category: category, image: image, date: date, repply: repply
+            }
+
+            postDM.updatePost(id, bundle, (err, result) => {
+                if(err) return res.send('that bai');
+                fs.unlink(fileName);
+
+                res.redirect('/');
+            })
+        })
     })
 });
 

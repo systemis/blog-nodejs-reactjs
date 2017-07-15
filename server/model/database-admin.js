@@ -13,6 +13,13 @@ class adminDM{
             fn(err, result[0]);
         })
     }
+
+    dropTable(){
+        connection.query(`DROP TABLE ${tableName}`, (err, result) => {
+            console.log(`Error  when delete table ${tableName}: ${err}`);
+            console.log(`Result when delete table ${tableName}: ${result}`);
+        })
+    }
 }
 
 module.exports = new adminDM();
